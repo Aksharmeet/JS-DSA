@@ -68,3 +68,39 @@ console.log(validAnagram('awesome', 'awesom')) // false)
 console.log(validAnagram('amanaplanacanalpanama', 'acanalmanplanpamana')) // false
 console.log(validAnagram('qwerty', 'qeywrt')) // true)
 console.log(validAnagram('texttwisttime', 'timetwisttext')) // true)
+
+// Frequency Counter - sameFrequency
+// Write a function called sameFrequency. Given two positive integers, find out if the two numbers have the same frequency of digits.
+const sameFrequency = (int1, int2) => {
+	// convert the int to string to obj, where values are frequnecy of time the char int appears in the string and keys are the char itself
+
+	const int1Obj = {}
+	const int2Obj = {}
+
+	for (let key of String(int1)) {
+		int1Obj[key] = (int1Obj[key] || 0) + 1
+	}
+
+	for (let key of String(int2)) {
+		int2Obj[key] = (int2Obj[key] || 0) + 1
+	}
+
+	// loop through any of the obj and check if the keys are matching
+
+	for (let key in int1Obj) {
+		if (!int2Obj[key]) {
+			// first check if the key exists in the other one
+			return false
+		} else if (int1Obj[key] !== int2Obj[key]) {
+			// then check if value/freq is the same
+			return false
+		}
+	}
+	// if this is true for than come out of the loop to say true
+	// if not return false
+	return true
+}
+console.log(sameFrequency(182, 281)) // true
+console.log(sameFrequency(34, 14)) // false
+console.log(sameFrequency(3589578, 5879385)) // true
+console.log(sameFrequency(22, 222)) // false
