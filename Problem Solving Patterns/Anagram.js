@@ -1,4 +1,5 @@
-// naive solution
+// In this we mostly convert the array into object to increase the speed of accessibility for its elements
+// This is useful when we want to access each element of an array without the use of an array.
 
 function validAnagram(str1, str2) {
 	// check the elements the length of the both str to be same

@@ -1,3 +1,5 @@
+// Multiple pointers is useful when working with two points in an array
+
 // countUniqueValues =>  takes an sorted array => returns an array of unique values in an array.
 const countUniqueValues = (array) => {
 	let firstPointer = 0
