@@ -16,29 +16,7 @@ const maxSubArraySum = (array, num) => {
 	return maxSum
 }
 
-// console.log(maxSubArraySum([2, 6, 9, 2, 1, 8, 5, 6, 3], 3)) // 19
-
-// Write a function called findLongestSubstring, which accepts a string and returns the length of the longest substring with all distinct characters.
-const findLongestSubstring = (str) => {
-	// create a loop on str char and add char's one by one to another str till you don't reach onto a
-	// repetition
-	let uniqueSubStr = ''
-	for (let i = 0; i < str.length; i++) {}
-
-	while (firstPointer <= str.length - 1) {
-		//
-	}
-
-	// create a loop and
-}
-
-// console.log(findLongestSubstring('')) // 0
-// console.log(findLongestSubstring('rithmschool')) // 7
-// console.log(findLongestSubstring('thisisawesome')) // 6
-// console.log(findLongestSubstring('thecatinthehat')) // 7
-// console.log(findLongestSubstring('bbbbbb')) // 1
-// console.log(findLongestSubstring('longestsubstring')) // 8
-// console.log(findLongestSubstring('thisishowwedoit')) // 6
+console.log(maxSubArraySum([2, 6, 9, 2, 1, 8, 5, 6, 3], 3)) // 19
 
 // Sliding Window - maxSubarraySum
 // Given an array of integers and a number, write a function called
@@ -73,13 +51,12 @@ const maxSubArraySum2 = (array, num) => {
 	return maxSum
 }
 
-// console.log(maxSubArraySum2([100, 200, 300, 400], 2)) // 700
-// console.log(maxSubArraySum2([1, 4, 2, 10, 23, 3, 1, 0, 20], 4)) // 39
-// console.log(maxSubArraySum2([-3, 4, 0, -2, 6, -1], 2)) // 5
-// console.log(maxSubArraySum2([3, -2, 7, -4, 1, -1, 4, -2, 1], 2)) // 5
-// console.log(maxSubArraySum2([2, 3], 3)) // null
+console.log(maxSubArraySum2([100, 200, 300, 400], 2)) // 700
+console.log(maxSubArraySum2([1, 4, 2, 10, 23, 3, 1, 0, 20], 4)) // 39
+console.log(maxSubArraySum2([-3, 4, 0, -2, 6, -1], 2)) // 5
+console.log(maxSubArraySum2([3, -2, 7, -4, 1, -1, 4, -2, 1], 2)) // 5
+console.log(maxSubArraySum2([2, 3], 3)) // null
 
-// Sliding Window - minSubArrayLen
 // Write a function called minSubArrayLen which accepts two parameters
 // - an array of positive integers and a positive integer.
 
@@ -112,23 +89,41 @@ const minSubArrayLen = (array, sum) => {
 	return minLen === Infinity ? 0 : minLen
 }
 
-// console.log(minSubArrayLen([2, 3, 1, 2, 4, 3], 7)) // 2 -> because [4,3] is the smallest subarray
-// console.log(minSubArrayLen([2, 1, 6, 5, 4], 9)) // 2 -> because [5,4] is the smallest subarray
-// console.log(minSubArrayLen([3, 1, 7, 11, 2, 9, 8, 21, 62, 33, 19], 52)) // 1 -> because [62] is greater than 52
-// console.log(minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 39)) // 3
-// console.log(minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 55)) // 5
-// console.log(minSubArrayLen([4, 3, 3, 8, 1, 2, 3], 11)) // 2
-// console.log(minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 95)) // 0
+console.log(minSubArrayLen([2, 3, 1, 2, 4, 3], 7)) // 2 -> because [4,3] is the smallest subarray
+console.log(minSubArrayLen([2, 1, 6, 5, 4], 9)) // 2 -> because [5,4] is the smallest subarray
+console.log(minSubArrayLen([3, 1, 7, 11, 2, 9, 8, 21, 62, 33, 19], 52)) // 1 -> because [62] is greater than 52
+console.log(minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 39)) // 3
+console.log(minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 55)) // 5
+console.log(minSubArrayLen([4, 3, 3, 8, 1, 2, 3], 11)) // 2
+console.log(minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 95)) // 0
 
 // Write a function called findLongestSubstring, which accepts a
 // string and returns the length of the longest substring with
 // all distinct characters
-const findLongestSubstring2 = (string) => {}
+const findLongestSubstring = (string) => {
+	const seen = {}
 
-console.log(findLongestSubstring2('')) // 0
-console.log(findLongestSubstring2('rithmschool')) // 7
-console.log(findLongestSubstring2('thisisawesome')) // 6
-console.log(findLongestSubstring2('thecatinthehat')) // 7
-console.log(findLongestSubstring2('bbbbbb')) // 1
-console.log(findLongestSubstring2('longestsubstring')) // 8
-console.log(findLongestSubstring2('thisishowwedoit')) // 6
+	let longest = 0
+	let crrPointer = 0
+
+	for (let i = 0; i < string.length; i++) {
+		const char = string[i]
+
+		if (seen[char]) {
+			crrPointer = Math.max(crrPointer, seen[char])
+		}
+
+		longest = Math.max(longest, i - crrPointer + 1)
+
+		seen[char] = i + 1
+	}
+	return longest
+}
+
+console.log(findLongestSubstring('')) // 0
+console.log(findLongestSubstring('rithmschool')) // 7
+console.log(findLongestSubstring('thisisawesome')) // 6
+console.log(findLongestSubstring('thecatinthehat')) // 7
+console.log(findLongestSubstring('bbbbbb')) // 1
+console.log(findLongestSubstring('longestsubstring')) // 8
+console.log(findLongestSubstring('thisishowwedoit')) // 6
