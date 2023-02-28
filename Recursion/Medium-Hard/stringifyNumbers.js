@@ -6,8 +6,8 @@
 const stringifyNumbers = (obj) => {
 	for (let key in obj) {
 		if (typeof obj[key] === 'number') {
-			obj[key] = `${obj[key]}`
-		} else if (typeof obj[key] === 'object') {
+			obj[key] = JSON.stringify(obj[key])
+		} else if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
 			obj[key] = stringifyNumbers(obj[key])
 		}
 	}
@@ -16,7 +16,7 @@ const stringifyNumbers = (obj) => {
 
 let obj = {
 	num: 1,
-	test: [],
+	test: [1],
 	data: {
 		val: 4,
 		info: {
