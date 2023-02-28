@@ -5,11 +5,16 @@
 function nestedEvenSum(obj) {
 	let count = 0
 
-	const recursiveSum = (obj) => {
-		const keys = Object.keys(obj)
+	for (let key in obj) {
+		if (typeof obj[key] === 'string') {
+		} else if (typeof obj[key] === 'number') {
+			if (obj[key] % 2 === 0) {
+				count += obj[key]
+			}
+		} else {
+			count += nestedEvenSum(obj[key])
+		}
 	}
-
-	recursiveSum(obj)
 
 	return count
 }
@@ -25,9 +30,8 @@ var obj1 = {
 		},
 	},
 }
-console.log(nestedEvenSum(obj1))
+console.log(nestedEvenSum(obj1)) //6
 
-console.log(Object.keys(obj1)[0])
 // loop over the keys of the object using a recursive function
 // check if the inner key => value is an even number
 // if it is add it to the count , if not move on to the next key/value.
